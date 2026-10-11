@@ -7,6 +7,7 @@ export function todayInBogota() {
   return `${part("year")}-${part("month")}-${part("day")}`;
 }
 const preferredDateSchema = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Selecciona una fecha preferida.").superRefine((value, context) => {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return;
   const date = new Date(`${value}T12:00:00Z`);
   if (!Number.isFinite(date.getTime()) || date.toISOString().slice(0, 10) !== value) {
     context.addIssue({ code: "custom", message: "Selecciona una fecha válida." });
