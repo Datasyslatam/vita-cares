@@ -9,7 +9,7 @@ export function PrivacyNotice({ children }: { children?: React.ReactNode }) {
 }
 
 export function SecureContactSection() {
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errors, setErrors] = useState<Partial<Record<"name" | "phone" | "email" | "service" | "consent" | "website", string>>>({});
   const [prepared, setPrepared] = useState(false);
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();

@@ -202,8 +202,8 @@ html { scroll-behavior: smooth; scroll-padding-top: 115px; }
 @media (max-width: 640px) {
   .page-width { width: calc(100% - 36px); }
   .hero { min-height: 690px; align-items: flex-start; }
-  .hero-photo { height: 300px; top: auto; object-position: right; }
-  .hero-copy { width: 100%; padding-block: 37px 290px; }
+  .hero-photo { height: 230px; top: auto; object-position: right; }
+  .hero-copy { width: 100%; padding-block: 30px 250px; }
   .hero h1 { font-size: 39px; margin-block: 18px; }
   .section-heading { font-size: 29px; }
   .steps::before { display: none; }
