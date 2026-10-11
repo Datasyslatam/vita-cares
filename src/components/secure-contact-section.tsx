@@ -34,7 +34,15 @@ export function SecureContactSection() {
       return;
     }
     if (channel === "mail") window.location.href = createContactMail(result.data);
-    else window.open(createAppointmentWhatsApp(result.data), "_blank", "noopener,noreferrer");
+    else {
+      // Programmatic anchor click: window.open with noopener triggers a COOP
+      // block (NS_ERROR_DOM_COOP_FAILED) in strict browsers like LibreWolf.
+      const anchor = document.createElement("a");
+      anchor.href = createAppointmentWhatsApp(result.data);
+      anchor.target = "_blank";
+      anchor.rel = "noreferrer";
+      anchor.click();
+    }
     setPrepared(true);
   }
   return <section id="contacto" className="py-20 md:py-24"><div className="page-width grid gap-12 lg:grid-cols-[1fr_1.05fr] lg:gap-24">
@@ -43,7 +51,7 @@ export function SecureContactSection() {
         <div className="flex gap-4"><MapPin className="mt-1 size-5 shrink-0 text-gold" /><div><h3 className="text-sm font-bold">Visítanos en Bogotá</h3><p className="section-copy mt-1">Sector El Lago – Gaitán<br />Cerca del Centro Comercial Unilago</p><a className="service-link mt-2" href="https://www.google.com/maps/search/?api=1&query=El+Lago+Gaitan+Unilago+Bogota" target="_blank" rel="noopener noreferrer">Ver zona en el mapa <ArrowUpRight size={14} /></a></div></div>
         <div className="flex gap-4"><Clock3 className="mt-1 size-5 shrink-0 text-gold" /><div><h3 className="text-sm font-bold">Horarios de atención</h3><p className="section-copy mt-1">Lunes a viernes<br />7:00 a.m. – 11:30 a.m. / 3:00 p.m. – 7:00 p.m.<br /><span className="mt-2 inline-block">Sábados: 7:00 a.m. – 2:00 p.m.</span></p></div></div>
         <div className="flex gap-4"><Phone className="mt-1 size-5 shrink-0 text-gold" /><div><a href="tel:+573138501503" className="text-sm font-bold">+57 313 850 1503</a><a href="mailto:vitalcare@gmail.com" className="section-copy mt-1 block">vitalcare@gmail.com</a></div></div>
-      </div><Button variant="whatsapp" size="care" className="mt-8" asChild><a href={whatsappUrl} target="_blank" rel="noopener noreferrer"><MessageCircle /> Escribir por WhatsApp <ArrowUpRight /></a></Button>
+      </div><Button variant="whatsapp" size="care" className="mt-8" asChild><a href={whatsappUrl} target="_blank" rel="noreferrer"><MessageCircle /> Escribir por WhatsApp <ArrowUpRight /></a></Button>
     </div>
     <div className="rounded-2xl border border-border bg-secondary/60 p-6 md:p-8"><div className="flex items-center gap-3"><span className="icon-tile"><Mail size={21} /></span><div><h3 className="text-xl font-bold">Solicita tu cita</h3><p className="mt-1 text-xs text-muted-foreground">Te contactaremos para coordinar día y hora.</p></div></div>
       <div className="mt-6 flex gap-4 border-b border-border pb-4 text-xs font-semibold" aria-label="Progreso de la solicitud"><span className={!request ? "text-primary" : "text-muted-foreground"} aria-current={!request ? "step" : undefined}>1. Datos de la cita</span><span className={request ? "text-primary" : "text-muted-foreground"} aria-current={request ? "step" : undefined}>2. Revisar y enviar</span></div>
