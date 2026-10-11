@@ -12,3 +12,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://happy-patient-reach.lovable.app/sitemap.xml
