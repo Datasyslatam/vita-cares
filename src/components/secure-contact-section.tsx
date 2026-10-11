@@ -9,7 +9,7 @@ export function PrivacyNotice({ children }: { children?: React.ReactNode }) {
 }
 
 export function SecureContactSection() {
-  const [errors, setErrors] = useState<Partial<Record<"name" | "phone" | "email" | "service" | "consent" | "website", string>>>({});
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [prepared, setPrepared] = useState(false);
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -34,12 +34,12 @@ export function SecureContactSection() {
     </div>
     <div className="rounded-2xl border border-border bg-secondary/60 p-6 md:p-8"><div className="flex items-center gap-3"><span className="icon-tile"><Mail size={21} /></span><div><h3 className="text-xl font-bold">Solicita tu cita</h3><p className="mt-1 text-xs text-muted-foreground">Te contactaremos para coordinar día y hora.</p></div></div>
       <form onSubmit={submit} noValidate className="mt-7 space-y-5">
-        <div><label className="field-label" htmlFor="name">Nombre completo</label><input id="name" name="name" autoComplete="name" placeholder="¿Cómo te llamas?" maxLength={80} className="form-field" aria-invalid={!!errors.name} aria-describedby={errors.name ? "name-error" : undefined} />{errors.name && <p id="name-error" className="form-error">{errors.name}</p>}</div>
+        <div><label className="field-label" htmlFor="name">Nombre completo</label><input id="name" name="name" autoComplete="name" placeholder="¿Cómo te llamas?" maxLength={80} className="form-field" aria-invalid={!!errors["name"]} aria-describedby={errors["name"] ? "name-error" : undefined} />{errors["name"] && <p id="name-error" className="form-error">{errors["name"]}</p>}</div>
         <div className="grid gap-5 sm:grid-cols-2">{[{ name: "phone", label: "Teléfono", placeholder: "Tu número de contacto", type: "tel", complete: "tel" }, { name: "email", label: "Correo electrónico", placeholder: "nombre@correo.com", type: "email", complete: "email" }].map(field => <div key={field.name}><label className="field-label" htmlFor={field.name}>{field.label}</label><input id={field.name} name={field.name} type={field.type} autoComplete={field.complete} placeholder={field.placeholder} maxLength={120} className="form-field" aria-invalid={!!errors[field.name]} aria-describedby={errors[field.name] ? `${field.name}-error` : undefined} />{errors[field.name] && <p id={`${field.name}-error`} className="form-error">{errors[field.name]}</p>}</div>)}</div>
         <div><label className="field-label" htmlFor="service">¿En qué podemos ayudarte?</label><select id="service" name="service" defaultValue="Consulta médica integral" className="form-field">{contactSchema.shape.service.options.map(value => <option key={value}>{value}</option>)}</select></div>
         <div className="honeypot" aria-hidden="true"><label htmlFor="website">Sitio web</label><input id="website" name="website" tabIndex={-1} autoComplete="off" /></div>
-        <div><label className="flex items-start gap-3 text-xs leading-5 text-muted-foreground"><input type="checkbox" name="consent" className="mt-1 accent-primary" aria-describedby={errors.consent ? "consent-error" : undefined} />Autorizo el uso de mis datos para ser contactado y coordinar mi cita.</label><div className="ml-6"><PrivacyNotice /></div>{errors.consent && <p id="consent-error" className="form-error">{errors.consent}</p>}</div>
-        {errors.website && <p className="form-error" role="alert">{errors.website}</p>}
+        <div><label className="flex items-start gap-3 text-xs leading-5 text-muted-foreground"><input type="checkbox" name="consent" className="mt-1 accent-primary" aria-describedby={errors["consent"] ? "consent-error" : undefined} />Autorizo el uso de mis datos para ser contactado y coordinar mi cita.</label><div className="ml-6"><PrivacyNotice /></div>{errors["consent"] && <p id="consent-error" className="form-error">{errors["consent"]}</p>}</div>
+        {errors["website"] && <p className="form-error" role="alert">{errors["website"]}</p>}
         <Button type="submit" variant="care" size="care" className="w-full">Solicitar mi cita <ArrowUpRight /></Button>
         <p className="text-center text-[11px] leading-5 text-muted-foreground">Se abrirá tu correo con la solicitud; confirma allí el envío.<br />No incluyas información clínica o datos sensibles.</p>
         {prepared && <p role="status" className="rounded-lg bg-sage-soft p-3 text-xs leading-5 text-sage">Solicitud preparada. Confirma el envío en tu aplicación de correo. Si no se abrió, puedes escribirnos por WhatsApp.</p>}
