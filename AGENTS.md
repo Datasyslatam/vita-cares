@@ -10,5 +10,5 @@
 <!-- LOVABLE:END -->
 
 - Keep the Vital Care landing as a single index route with anchored sections; the brief requests one integrated page.
-- Keep contact validation and mail handoff in the shared contact module and contact UI in a separate component; this avoids storing health data or implying an unconfigured delivery service.
+- Keep appointment schema validation and encoded email/WhatsApp handoffs in the shared contact module and use an editable review step in the contact UI; no requests are stored and delivery or booking confirmation must never be implied.
 - Store uploaded page media through asset pointer imports and use a local square favicon; media stays CDN-managed while browsers receive a real icon.
