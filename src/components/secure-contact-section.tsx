@@ -34,7 +34,15 @@ export function SecureContactSection() {
       return;
     }
     if (channel === "mail") window.location.href = createContactMail(result.data);
-    else window.open(createAppointmentWhatsApp(result.data), "_blank", "noopener,noreferrer");
+    else {
+      // Programmatic anchor click: window.open with noopener triggers a COOP
+      // block (NS_ERROR_DOM_COOP_FAILED) in strict browsers like LibreWolf.
+      const anchor = document.createElement("a");
+      anchor.href = createAppointmentWhatsApp(result.data);
+      anchor.target = "_blank";
+      anchor.rel = "noreferrer";
+      anchor.click();
+    }
     setPrepared(true);
   }
   return <section id="contacto" className="py-20 md:py-24"><div className="page-width grid gap-12 lg:grid-cols-[1fr_1.05fr] lg:gap-24">
