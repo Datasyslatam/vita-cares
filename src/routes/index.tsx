@@ -7,15 +7,58 @@ import { whatsappUrl } from "@/lib/contact";
 import heroAsset from "@/assets/hero-consulta.jpg.asset.json";
 import logoAsset from "@/assets/logo.png.asset.json";
 
+const medicalBusinessJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "MedicalBusiness",
+  name: "Vital Care",
+  description: "Consultorio médico en Bogotá. Consultas de 40 minutos, medicina humana y atención personalizada.",
+  url: "https://happy-patient-reach.lovable.app/",
+  telephone: "+57 313 850 1503",
+  email: "vitalcare@gmail.com",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Bogotá",
+    addressRegion: "Bogotá D.C.",
+    addressCountry: "CO",
+    streetAddress: "Sector El Lago – Gaitán, cerca del Centro Comercial Unilago",
+  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "07:00",
+      closes: "11:30",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "15:00",
+      closes: "19:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: "Saturday",
+      opens: "07:00",
+      closes: "14:00",
+    },
+  ],
+};
+
 export const Route = createFileRoute("/")({
-  head: () => ({ meta: [
-    { title: "Vital Care | Tu salud merece tiempo · Bogotá" },
-    { name: "description", content: "40 minutos para escucharte. Consulta médica integral, prevención y seguimiento personalizado en El Lago – Gaitán, Bogotá. Agenda en Vital Care." },
-    { property: "og:title", content: "Vital Care | Tu salud merece tiempo" },
-    { property: "og:description", content: "Medicina humana, consultas de 40 minutos y atención personalizada en Bogotá. Conoce Vital Care y solicita tu cita." },
-    { property: "og:type", content: "website" },
-    { name: "twitter:card", content: "summary_large_image" },
-  ] }),
+  staticData: { sitemap: true },
+  head: () => ({
+    meta: [
+      { title: "Vital Care | Tu salud merece tiempo · Bogotá" },
+      { name: "description", content: "40 minutos para escucharte. Consulta médica integral, prevención y seguimiento personalizado en El Lago – Gaitán, Bogotá. Agenda en Vital Care." },
+      { property: "og:title", content: "Vital Care | Tu salud merece tiempo" },
+      { property: "og:description", content: "Medicina humana, consultas de 40 minutos y atención personalizada en Bogotá. Conoce Vital Care y solicita tu cita." },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://happy-patient-reach.lovable.app/" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [{ rel: "canonical", href: "https://happy-patient-reach.lovable.app/" }],
+    scripts: [{ type: "application/ld+json", children: JSON.stringify(medicalBusinessJsonLd) }],
+  }),
   component: Index,
 });
 
