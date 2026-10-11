@@ -1,24 +1,62 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import { ArrowRight, ArrowUpRight, CalendarDays, Check, Clock3, Heart, HeartPulse, Menu, MessageCircle, ShieldCheck, Sprout, Stethoscope, Users, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { PrivacyNotice, SecureContactSection } from "@/components/secure-contact-section";
+import { whatsappUrl } from "@/lib/contact";
+import heroAsset from "@/assets/hero-consulta.jpg.asset.json";
+import logoAsset from "@/assets/logo.png.asset.json";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({ meta: [
+    { title: "Vital Care | Tu salud merece tiempo · Bogotá" },
+    { name: "description", content: "40 minutos para escucharte. Consulta médica integral, prevención y seguimiento personalizado en El Lago – Gaitán, Bogotá. Agenda en Vital Care." },
+    { property: "og:title", content: "Vital Care | Tu salud merece tiempo" },
+    { property: "og:description", content: "Medicina humana, consultas de 40 minutos y atención personalizada en Bogotá. Conoce Vital Care y solicita tu cita." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
+  ] }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
+const links = [{ href: "#nosotros", label: "¿Por qué Vital Care?" }, { href: "#servicios", label: "Servicios" }, { href: "#modelo", label: "Nuestra atención" }, { href: "#contacto", label: "Contacto" }];
+
+function Navigation() {
+  const [open, setOpen] = useState(false);
+  return <header className="site-header"><div className="page-width flex h-[100px] items-center justify-between gap-6"><a href="#inicio" aria-label="Vital Care, inicio"><img src={logoAsset.url} alt="Vital Care — Consultorio médico" className="h-[80px] w-[116px] object-contain" /></a><nav aria-label="Navegación principal" className="hidden items-center gap-8 lg:flex">{links.map(link => <a key={link.href} href={link.href} className="nav-link">{link.label}</a>)}</nav><div className="flex items-center gap-3"><Button asChild variant="care" size="care" className="hidden sm:inline-flex"><a href="#contacto"><CalendarDays /> Agendar mi cita <ArrowUpRight /></a></Button><Button variant="ghost" size="icon" className="lg:hidden" aria-label={open ? "Cerrar menú" : "Abrir menú"} aria-expanded={open} aria-controls="mobile-nav" onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</Button></div></div>{open && <nav id="mobile-nav" aria-label="Navegación móvil" className="page-width flex flex-col gap-5 border-t border-border py-5 lg:hidden">{links.map(link => <a key={link.href} href={link.href} onClick={() => setOpen(false)} className="nav-link">{link.label}</a>)}<Button variant="care" asChild><a href="#contacto" onClick={() => setOpen(false)}>Agendar mi cita <ArrowUpRight /></a></Button></nav>}</header>;
+}
+
+function Hero() {
+  return <section className="hero" id="inicio"><img src={heroAsset.url} className="hero-photo" alt="Médico escuchando con atención a un paciente durante una consulta" fetchPriority="high" /><div className="page-width"><div className="hero-copy reveal"><div className="eyebrow">Medicina humana en Bogotá</div><h1>Tu salud merece<br /><span className="text-primary">tiempo.</span></h1><p className="text-xl font-medium leading-relaxed">40 minutos para escucharte.<br />Medicina para cuidarte.</p><p className="mt-5 max-w-[380px] text-sm leading-7 text-muted-foreground">Una consulta sin afanes, donde te escuchamos, comprendemos tu historia y cuidamos de ti.</p><div className="mt-7 flex flex-wrap gap-3"><Button variant="care" size="care" asChild><a href="#contacto"><CalendarDays /> Agendar mi cita <ArrowUpRight /></a></Button><Button variant="whatsapp" size="care" asChild><a href={whatsappUrl} target="_blank" rel="noopener noreferrer"><MessageCircle /> Escribir por WhatsApp</a></Button></div><div className="mt-6 flex items-center gap-2 text-xs text-muted-foreground"><MapPinSmall /> El Lago – Gaitán, Bogotá <span className="mx-1 text-gold">·</span> Cerca de Unilago</div></div></div></section>;
+}
+function MapPinSmall() { return <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="3" /></svg>; }
+
+function WhyCare() {
+  const features = [
+    { icon: Clock3, title: "40 minutos contigo", copy: "El tiempo que necesitas para hablar, preguntar y sentirte escuchado. Sin prisas, sin afanes.", note: "Tu tiempo importa" },
+    { icon: Users, title: "Atención personalizada", copy: "Tu historia es única. Tu atención también. Cuidamos de ti según tus necesidades y etapa de vida.", note: "Cuidado pensado para ti" },
+    { icon: Heart, title: "Medicina humana", copy: "Más allá de los síntomas, vemos a la persona. Cercanía, respeto y empatía en cada encuentro.", note: "Personas cuidando personas" },
+  ];
+  return <section id="nosotros" className="py-16 md:py-20"><div className="page-width"><div className="flex flex-col justify-between gap-4 md:flex-row md:items-end"><div><div className="eyebrow">La diferencia está en el cuidado</div><h2 className="section-heading mt-4">Aquí, tú eres la prioridad.</h2></div><p className="section-copy max-w-[330px]">Creemos en una medicina que se toma el tiempo de conocerte y acompañarte.</p></div><div className="mt-9 grid gap-5 md:grid-cols-3">{features.map(item => <article className="care-card" key={item.title}><span className="icon-tile"><item.icon size={23} strokeWidth={1.6} /></span><h3 className="mt-5 text-lg font-bold">{item.title}</h3><p className="section-copy mt-3">{item.copy}</p><div className="mt-6 flex items-center gap-2 border-t border-border pt-4 text-[11px] font-semibold text-gold"><Check size={13} />{item.note}</div></article>)}</div></div></section>;
+}
+
+function Services() {
+  const services = [
+    { icon: Stethoscope, title: "Consulta médica integral", copy: "Una valoración completa para entender cómo estás y definir juntos el camino hacia tu bienestar." },
+    { icon: Users, title: "Cada etapa de tu vida", copy: "Atención para la infancia, la adultez y la persona mayor. Un cuidado que evoluciona contigo." },
+    { icon: HeartPulse, title: "Seguimiento de enfermedades crónicas", copy: "Acompañamiento continuo y cercano para el manejo de tus condiciones de salud." },
+    { icon: Sprout, title: "Prevención y bienestar", copy: "Anticiparnos también es cuidar. Valoración de riesgos y orientación para hábitos saludables." },
+  ];
+  return <section id="servicios" className="bg-secondary py-16 md:py-20"><div className="page-width"><div className="flex flex-col items-center text-center"><div className="eyebrow">Nuestros servicios</div><h2 className="section-heading mt-4">Cuidarte, en cada etapa.</h2><p className="section-copy mt-3">Atención médica integral, con la cercanía que mereces.</p></div><div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">{services.map(item => <article className="care-card flex flex-col" key={item.title}><item.icon className="size-7 text-primary" strokeWidth={1.5} /><h3 className="mb-3 mt-5 text-base font-bold leading-6">{item.title}</h3><p className="section-copy mb-6">{item.copy}</p><a className="service-link mt-auto" href="#contacto">Agendar consulta <ArrowRight size={14} /></a></article>)}</div></div></section>;
+}
+
+function CareModel() {
+  const steps = [{ title: "Escuchamos", copy: "Te damos el espacio para compartir lo que sientes y lo que te preocupa." }, { title: "Comprendemos", copy: "Conocemos tu historia y valoramos tu salud de forma integral." }, { title: "Orientamos", copy: "Te explicamos con claridad y construimos un plan de cuidado contigo." }, { title: "Acompañamos", copy: "Seguimos a tu lado para cuidar tu salud más allá de la consulta." }];
+  return <section id="modelo" className="py-16 md:py-20"><div className="page-width"><div className="text-center"><div className="eyebrow justify-center">Nuestro modelo de atención</div><h2 className="section-heading mt-4">Un cuidado que empieza por escucharte.</h2><p className="section-copy mt-3">Cuatro pasos. Una misma intención: tu bienestar.</p></div><div className="steps mt-11 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">{steps.map((step, i) => <div key={step.title} className="relative"><span className="step-number">0{i + 1}</span><h3 className="mt-5 text-lg font-bold">{step.title}</h3><p className="section-copy mt-2 max-w-[240px]">{step.copy}</p></div>)}</div></div></section>;
+}
+
+function Footer() { return <footer className="bg-footer py-10 text-primary-foreground"><div className="page-width"><div className="flex flex-col justify-between gap-8 md:flex-row"><div className="flex items-center gap-5"><img src={logoAsset.url} alt="Vital Care" width="110" height="100" className="h-[95px] w-[110px] object-contain" loading="lazy" /><div><p className="text-base font-semibold">Tu salud merece tiempo.</p><p className="mt-2 text-xs leading-6 text-footer-muted">Medicina humana. Cuidado cercano.<br />El Lago – Gaitán, Bogotá.</p></div></div><nav aria-label="Enlaces del pie de página" className="flex flex-wrap items-center gap-6 text-xs text-footer-muted"><a href="#nosotros">Vital Care</a><a href="#servicios">Servicios</a><a href="#contacto">Contacto</a><PrivacyNotice>Privacidad</PrivacyNotice></nav></div><div className="mt-7 flex flex-col justify-between gap-3 border-t border-footer-muted/20 pt-6 text-[11px] text-footer-muted sm:flex-row"><p>© {new Date().getFullYear()} Vital Care. Todos los derechos reservados.</p><p>Este sitio no sustituye una valoración médica. En una emergencia, llama al 123.</p></div></div></footer>; }
+
 function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
+  return <><Navigation /><main><Hero /><div className="border-b border-border bg-secondary/60"><div className="page-width flex flex-wrap items-center justify-center gap-x-14 gap-y-3 py-5 text-[11px] font-medium text-muted-foreground"><span className="flex items-center gap-2"><Clock3 size={16} className="text-gold" /> Consultas de 40 minutos</span><span className="flex items-center gap-2"><Heart size={16} className="text-gold" /> Atención cercana y sin afanes</span><span className="flex items-center gap-2"><ShieldCheck size={16} className="text-gold" /> Tu bienestar, nuestra prioridad</span></div></div><WhyCare /><Services /><CareModel /><section className="bg-primary py-9 text-primary-foreground"><div className="page-width flex flex-col items-start justify-between gap-5 md:flex-row md:items-center"><div className="flex items-center gap-5"><Heart className="hidden size-9 shrink-0 text-gold-soft sm:block" strokeWidth={1.3} /><div><h2 className="text-xl font-semibold">No tienes que cuidar de tu salud a solas.</h2><p className="mt-2 text-sm text-primary-foreground/80">Estamos aquí para escucharte y acompañarte.</p></div></div><Button variant="gold" size="care" asChild><a href="#contacto">Demos el primer paso <ArrowUpRight /></a></Button></div></section><SecureContactSection /></main><Footer /><Button variant="care" size="icon" asChild className="fixed bottom-6 right-6 z-20 size-12 rounded-full shadow-lg"><a href={whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label="Contactar Vital Care por WhatsApp" title="Escribir por WhatsApp"><MessageCircle className="size-6" /></a></Button></>;
 }
