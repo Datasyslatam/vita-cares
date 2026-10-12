@@ -171,9 +171,17 @@ html { scroll-behavior: smooth; scroll-padding-top: 115px; }
 .site-header { background: var(--background); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 30; }
 .nav-link { color: var(--muted-foreground); font-size: 13px; font-weight: 600; transition: color .2s; }
 .nav-link:hover { color: var(--gold); }
-.hero { position: relative; min-height: 555px; display: flex; align-items: center; overflow: hidden; background: var(--secondary); }
+.hero { position: relative; min-height: 555px; display: flex; overflow: hidden; background: var(--secondary); }
+.hero > .page-width { position: relative; display: flex; align-items: center; }
 .hero-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .hero-copy { position: relative; width: 520px; padding-block: 65px; }
+.hero-badges { list-style: none; margin: 0; padding: 0; position: absolute; right: 0; bottom: 26px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 470px; border: 1px solid var(--border); border-radius: 20px; background: var(--hero-veil); backdrop-filter: blur(9px); box-shadow: var(--shadow-soft); overflow: hidden; }
+.hero-badge { display: flex; align-items: center; gap: 12px; padding: 15px 18px; }
+.hero-badge:nth-child(2n) { border-left: 1px solid var(--border); }
+.hero-badge:nth-child(n+3) { border-top: 1px solid var(--border); }
+.hero-badge-icon { width: 40px; height: 40px; flex: none; border-radius: 50%; display: grid; place-items: center; background: var(--primary); color: var(--primary-foreground); }
+.hero-badge-title { display: block; font-size: 12.5px; font-weight: 700; line-height: 1.35; color: var(--foreground); }
+.hero-badge-sub { display: block; margin-top: 2px; font-size: 11px; line-height: 1.5; color: var(--muted-foreground); }
 .hero h1 { font-size: 54px; line-height: 1.14; font-weight: 750; margin-block: 22px; }
 .eyebrow { display: flex; align-items: center; gap: 10px; color: var(--gold); font-size: 11px; font-weight: 750; text-transform: uppercase; letter-spacing: 1.8px; }
 .eyebrow::before { content: ""; width: 23px; height: 1px; background: var(--gold); }
@@ -198,15 +206,20 @@ html { scroll-behavior: smooth; scroll-padding-top: 115px; }
   .page-width { width: calc(100% - 48px); }
   .hero-copy { width: 47%; }
   .hero h1 { font-size: 42px; }
+  .hero > .page-width { display: block; }
+  .hero-badges { position: static; max-width: none; margin-top: 26px; }
 }
 @media (max-width: 640px) {
   .page-width { width: calc(100% - 36px); }
-  .hero { min-height: 690px; align-items: flex-start; }
+  .hero { min-height: 690px; padding-bottom: 250px; }
   .hero-photo { height: 230px; top: auto; object-position: right; }
-  .hero-copy { width: 100%; padding-block: 30px 250px; }
+  .hero-copy { width: 100%; padding-block: 30px 20px; }
   .hero h1 { font-size: 39px; margin-block: 18px; }
   .section-heading { font-size: 29px; }
   .steps::before { display: none; }
   .care-card { padding: 23px; }
+  .hero-badges { grid-template-columns: 1fr; }
+  .hero-badge:nth-child(2n) { border-left: 0; }
+  .hero-badge:nth-child(n+2) { border-top: 1px solid var(--border); }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .reveal { animation: none; } }
