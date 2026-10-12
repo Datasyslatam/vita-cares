@@ -6,6 +6,12 @@ import { PrivacyNotice, SecureContactSection } from "@/components/secure-contact
 import { whatsappUrl } from "@/lib/contact";
 import heroAsset from "@/assets/hero-consulta.jpg.asset.json";
 import logoAsset from "@/assets/logo.png.asset.json";
+import fotoRecepcion from "@/assets/instalaciones-recepcion.jpg.asset.json";
+import fotoMarca from "@/assets/instalaciones-marca.jpg.asset.json";
+import fotoConsultorio from "@/assets/instalaciones-consultorio.jpg.asset.json";
+import fotoValoracion from "@/assets/instalaciones-valoracion.jpg.asset.json";
+import fotoEspera from "@/assets/instalaciones-espera.jpg.asset.json";
+import fotoRecepcion2 from "@/assets/instalaciones-recepcion-2.jpg.asset.json";
 
 const medicalBusinessJsonLd = {
   "@context": "https://schema.org",
@@ -102,6 +108,19 @@ function Services() {
     { icon: Sprout, title: "Prevención y bienestar", copy: "Anticiparnos también es cuidar. Valoración de riesgos y orientación para hábitos saludables." },
   ];
   return <section id="servicios" className="bg-secondary py-16 md:py-20"><div className="page-width"><div className="flex flex-col items-center text-center"><div className="eyebrow">Nuestros servicios</div><h2 className="section-heading mt-4">Cuidarte, en cada etapa.</h2><p className="section-copy mt-3">Atención médica integral, con la cercanía que mereces.</p></div><div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">{services.map(item => <article className="care-card flex flex-col" key={item.title}><item.icon className="size-7 text-primary" strokeWidth={1.5} /><h3 className="mb-3 mt-5 text-base font-bold leading-6">{item.title}</h3><p className="section-copy mb-6">{item.copy}</p><a className="service-link mt-auto" href="#contacto">Agendar consulta <ArrowRight size={14} /></a></article>)}</div></div></section>;
+}
+
+const facilitiesPhotos = [
+  { src: fotoRecepcion, alt: "Recepción de Vital Care con sofá y mural de madera", caption: "Recepción", span: "facility-wide-tall" },
+  { src: fotoEspera, alt: "Zona de espera con butacas y puerta de vidrio con el logo de Vital Care", caption: "Zona de espera", span: "facility-wide" },
+  { src: fotoMarca, alt: "Mural con el nombre de los médicos y el logo de Vital Care", caption: "Nuestra identidad", span: "" },
+  { src: fotoConsultorio, alt: "Consultorio médico con escritorio y sillas de atención", caption: "Consultorio", span: "" },
+  { src: fotoValoracion, alt: "Área de valoración física con camilla y equipo médico", caption: "Área de valoración", span: "facility-wide" },
+  { src: fotoRecepcion2, alt: "Mostrador de recepción con señal de salida de emergencia", caption: "Siempre listos para recibirte", span: "facility-wide" },
+];
+
+function Facilities() {
+  return <section id="instalaciones" className="bg-secondary py-16 md:py-20"><div className="page-width"><div className="flex flex-col items-center text-center"><div className="eyebrow justify-center">Nuestras instalaciones</div><h2 className="section-heading mt-4">Un espacio creado para<br />que te sientas en confianza.</h2><p className="section-copy mt-4 max-w-xl">Creemos que el ambiente también cuida. Nuestras instalaciones están pensadas para que, desde el momento en que llegas, te reciban la calidez, la tranquilidad y la privacidad que tu visita merece.</p></div><div className="facilities-grid mt-11">{facilitiesPhotos.map(photo => <figure className={`facility-card ${photo.span}`} key={photo.caption}><img src={photo.src} alt={photo.alt} className="facility-photo" loading="lazy" /><figcaption className="facility-caption">{photo.caption}</figcaption></figure>)}</div></div></section>;
 }
 
 function CareModel() {
