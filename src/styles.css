@@ -152,6 +152,7 @@
   --sage-soft: oklch(0.96 0.018 153);
   --footer: oklch(0.29 0.036 246);
   --footer-muted: oklch(0.79 0.019 247);
+  --facility-veil: oklch(0.32 0.035 247 / 62%);
   --hero-veil: oklch(0.99 0.007 231 / 94%);
   --shadow-soft: 0 8px 28px oklch(0.32 0.035 247 / 5%);
 }
@@ -193,6 +194,20 @@ html { scroll-behavior: smooth; scroll-padding-top: 115px; }
 .step-number { width: 43px; height: 43px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--gold); border-radius: 50%; color: var(--gold); background: var(--secondary); font-size: 13px; font-weight: 700; position: relative; }
 .steps { position: relative; }
 .steps::before { content: ""; position: absolute; top: 21px; left: 8%; right: 15%; height: 1px; background: var(--border); }
+.facilities-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 152px; gap: 14px; }
+.facility-card { position: relative; margin: 0; overflow: hidden; border-radius: var(--radius); background: var(--muted); box-shadow: var(--shadow-soft); }
+.facility-wide { grid-column: span 2; }
+.facility-wide-tall { grid-column: span 2; grid-row: span 2; }
+.facility-photo { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s ease; }
+.facility-card:hover .facility-photo { transform: scale(1.045); }
+.facility-caption { position: absolute; inset-inline: 0; bottom: 0; padding: 34px 16px 12px; font-size: 12px; font-weight: 700; color: var(--primary-foreground); background: linear-gradient(to top, var(--facility-veil), transparent); }
+@media (max-width: 900px) {
+  .facilities-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 142px; }
+}
+@media (max-width: 640px) {
+  .facilities-grid { grid-template-columns: 1fr; grid-auto-rows: 190px; }
+  .facility-wide, .facility-wide-tall { grid-column: auto; grid-row: auto; }
+}
 .field-label { display: block; font-size: 12px; font-weight: 650; margin-bottom: 8px; }
 .form-field { width: 100%; border: 1px solid var(--input); border-radius: 8px; padding: 12px 14px; background: var(--background); color: var(--foreground); font: inherit; font-size: 13px; outline: none; }
 .form-field:focus { border-color: var(--primary); box-shadow: 0 0 0 2px var(--accent); }
