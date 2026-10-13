@@ -168,7 +168,7 @@ function Facilities() {
 }
 
 function Team() {
-  return <section id="equipo" className="py-16 md:py-20"><div className="page-width team-grid"><div className="team-photo-frame"><img src={fotoEquipo.url} alt="Dos profesionales de Vital Care con uniformes médicos y estetoscopios, de pie frente al vidrio con el logo del consultorio" className="team-photo" loading="lazy" /></div><div><div className="eyebrow">Nuestro equipo</div><h2 className="team-heading mt-4">Profesionales que te cuidan, personas que te escuchan.</h2><p className="section-copy mt-5">En Vital Care creemos que una buena atención médica comienza escuchándote. Nuestro equipo de profesionales está comprometido con brindarte una atención cercana, humana y personalizada, en un espacio donde puedas expresar tus inquietudes, resolver tus dudas y sentirte acompañado en el cuidado de tu salud.</p></div></div></section>;
+  return <section id="equipo" className="py-16 md:py-20"><div className="page-width team-grid"><div className="team-photo-frame"><img src={fotoEquipo.url} alt="Dos profesionales de Vital Care con uniformes médicos y estetoscopios, de pie frente al vidrio con el logo del consultorio" className="team-photo" loading="lazy" /></div><div><div className="eyebrow">Nuestro equipo</div><h2 className="team-heading mt-4">Profesionales que te cuidan, personas que te escuchan.</h2><p className="team-copy mt-5">En Vital Care creemos que una buena atención médica comienza escuchándote. Nuestro equipo de profesionales está comprometido con brindarte una atención cercana, humana y personalizada, en un espacio donde puedas expresar tus inquietudes, resolver tus dudas y sentirte acompañado en el cuidado de tu salud.</p></div></div></section>;
 }
 
 function CareModel() {
