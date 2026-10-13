@@ -6,6 +6,7 @@ import { PrivacyNotice, SecureContactSection } from "@/components/secure-contact
 import { whatsappUrl } from "@/lib/contact";
 import heroAsset from "@/assets/hero-consulta-3.jpg.asset.json";
 import heroSlide2Asset from "@/assets/hero-consulta-2.jpg.asset.json";
+import heroSlide3Asset from "@/assets/hero-consulta-4.jpg.asset.json";
 import logoAsset from "@/assets/logo.png.asset.json";
 import fotoRecepcion from "@/assets/instalaciones-recepcion.jpg.asset.json";
 import fotoMarca from "@/assets/instalaciones-marca.jpg.asset.json";
@@ -106,6 +107,15 @@ const heroSlides = [
     lead: <>Conocemos tu historia.<br />Cuidamos de ti, a tu ritmo.</>,
     sub: "Atención personalizada para cada etapa de la vida, con el tiempo y la calidez que tu salud merece.",
   },
+  {
+    photo: heroSlide3Asset,
+    alt: "Médico conversando con una futura mamá en una consulta relajada de Vital Care",
+    eyebrow: "Cuidado en cada momento de tu vida",
+    titleA: "Acompañamos tu",
+    titleB: "bienestar.",
+    lead: <>Consultas pausadas y cercanas.<br />Para ti y tu familia.</>,
+    sub: "Un espacio tranquilo donde responderemos tus preguntas y te acompañamos con confianza en cada etapa.",
+  },
 ];
 
 function Hero() {
@@ -115,7 +125,7 @@ function Hero() {
   useEffect(() => {
     if (paused) return;
     if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const id = window.setInterval(() => setActive(i => (i + 1) % heroSlides.length), 8000);
+    const id = window.setInterval(() => setActive(i => (i + 1) % heroSlides.length), 6000);
     return () => window.clearInterval(id);
   }, [paused, active]);
 
