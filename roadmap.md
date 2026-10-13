@@ -5,3 +5,6 @@
 - [x] Add preferred date and editable request review with email/WhatsApp handoffs.
 - [x] Verify appointment date validation and the complete request flow.
 - [x] Add the four round highlight cards to the bottom-right of the hero banner.
+- [x] Add the "Nuestras Instalaciones" gallery section above the appointment form.
+- [x] Turn the hero into a three-slide banner with gold indicators and 6-second rotation.
+- [x] Add the two-column "Nuestro equipo" section above "Nuestro modelo de atención".
