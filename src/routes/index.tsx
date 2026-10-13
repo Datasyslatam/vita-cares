@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowRight, ArrowUpRight, CalendarDays, Check, Clock3, Flower2, Heart, HeartPulse, Menu, MessageCircle, Sprout, Stethoscope, Users, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PrivacyNotice, SecureContactSection } from "@/components/secure-contact-section";
