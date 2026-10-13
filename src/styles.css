@@ -178,8 +178,8 @@ html { scroll-behavior: smooth; scroll-padding-top: 115px; }
 .hero-photo.is-active { opacity: 1; }
 .hero-dots { display: flex; gap: 8px; margin-top: 26px; }
 .hero-dot { width: 26px; height: 4px; border-radius: 999px; background: var(--border); border: 0; padding: 0; cursor: pointer; transition: background .25s ease, width .25s ease; }
-.hero-dot:hover { background: var(--muted-foreground); }
-.hero-dot.is-active { background: var(--primary); width: 38px; }
+.hero-dot:hover { background: var(--gold); opacity: .65; }
+.hero-dot.is-active { background: var(--gold); width: 38px; }
 .hero-copy { position: relative; width: 520px; padding-block: 65px; }
 .hero-badges { list-style: none; margin: 0; padding: 0; position: absolute; right: 0; bottom: 26px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 470px; border: 1px solid var(--border); border-radius: 20px; background: var(--hero-veil); backdrop-filter: blur(9px); box-shadow: var(--shadow-soft); overflow: hidden; }
 .hero-badge { display: flex; align-items: center; gap: 12px; padding: 15px 18px; }
