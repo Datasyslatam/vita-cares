@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { PrivacyNotice, SecureContactSection } from "@/components/secure-contact-section";
 import { whatsappUrl } from "@/lib/contact";
 import heroAsset from "@/assets/hero-consulta-3.jpg.asset.json";
+import heroSlide2Asset from "@/assets/hero-consulta-2.jpg.asset.json";
 import logoAsset from "@/assets/logo.png.asset.json";
 import fotoRecepcion from "@/assets/instalaciones-recepcion.jpg.asset.json";
 import fotoMarca from "@/assets/instalaciones-marca.jpg.asset.json";
@@ -86,8 +87,40 @@ function HeroHighlights() {
   return <ul className="hero-badges" aria-label="Lo que encontrarás en Vital Care">{heroHighlights.map(item => <li className="hero-badge" key={item.title}><span className="hero-badge-icon"><item.icon size={19} strokeWidth={1.7} /></span><span><span className="hero-badge-title">{item.title}</span><span className="hero-badge-sub">{item.copy}</span></span></li>)}</ul>;
 }
 
+const heroSlides = [
+  {
+    photo: heroAsset,
+    alt: "Médico escuchando con atención a un paciente durante una consulta",
+    eyebrow: "Medicina humana en Bogotá",
+    titleA: "Tu salud merece",
+    titleB: "tiempo.",
+    lead: <>40 minutos para escucharte.<br />Medicina para cuidarte.</>,
+    sub: "Una consulta sin afanes, donde te escuchamos, comprendemos tu historia y cuidamos de ti.",
+  },
+  {
+    photo: heroSlide2Asset,
+    alt: "Médica escuchando con cercanía a un paciente adulto mayor en el consultorio de Vital Care",
+    eyebrow: "Atención cercana y sin afanes",
+    titleA: "Una consulta que",
+    titleB: "te escucha.",
+    lead: <>Conocemos tu historia.<br />Cuidamos de ti, a tu ritmo.</>,
+    sub: "Atención personalizada para cada etapa de la vida, con el tiempo y la calidez que tu salud merece.",
+  },
+];
+
 function Hero() {
-  return <section className="hero" id="inicio"><img src={heroAsset.url} className="hero-photo" alt="Médico escuchando con atención a un paciente durante una consulta" fetchPriority="high" /><div className="page-width"><div className="hero-copy reveal"><div className="eyebrow">Medicina humana en Bogotá</div><h1>Tu salud merece<br /><span className="text-primary">tiempo.</span></h1><p className="text-xl font-medium leading-relaxed">40 minutos para escucharte.<br />Medicina para cuidarte.</p><p className="mt-5 max-w-[380px] text-sm leading-7 text-muted-foreground">Una consulta sin afanes, donde te escuchamos, comprendemos tu historia y cuidamos de ti.</p><div className="mt-7 flex flex-wrap gap-3"><Button variant="care" size="care" asChild><a href="#contacto"><CalendarDays /> Agendar mi cita <ArrowUpRight /></a></Button><Button variant="whatsapp" size="care" asChild><a href={whatsappUrl} target="_blank" rel="noreferrer"><MessageCircle /> Escribir por WhatsApp</a></Button></div><div className="mt-6 flex items-center gap-2 text-xs text-muted-foreground"><MapPinSmall /> El Lago – Gaitán, Bogotá <span className="mx-1 text-gold">·</span> Cerca de Unilago</div></div><HeroHighlights /></div></section>;
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    if (paused) return;
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const id = window.setInterval(() => setActive(i => (i + 1) % heroSlides.length), 8000);
+    return () => window.clearInterval(id);
+  }, [paused, active]);
+
+  const slide = heroSlides[active];
+  return <section className="hero" id="inicio" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>{heroSlides.map((item, i) => <img key={item.photo.url} src={item.photo.url} alt={i === active ? item.alt : ""} aria-hidden={i !== active} className={`hero-photo${i === active ? " is-active" : ""}`} loading={i === 0 ? undefined : "lazy"} fetchPriority={i === 0 ? "high" : undefined} />)}<div className="page-width"><div className="hero-copy"><div className="reveal" key={active} aria-live="polite"><div className="eyebrow">{slide.eyebrow}</div><h1>{slide.titleA}<br /><span className="text-primary">{slide.titleB}</span></h1><p className="text-xl font-medium leading-relaxed">{slide.lead}</p><p className="mt-5 max-w-[380px] text-sm leading-7 text-muted-foreground">{slide.sub}</p></div><div className="mt-7 flex flex-wrap gap-3"><Button variant="care" size="care" asChild><a href="#contacto"><CalendarDays /> Agendar mi cita <ArrowUpRight /></a></Button><Button variant="whatsapp" size="care" asChild><a href={whatsappUrl} target="_blank" rel="noreferrer"><MessageCircle /> Escribir por WhatsApp</a></Button></div><div className="mt-6 flex items-center gap-2 text-xs text-muted-foreground"><MapPinSmall /> El Lago – Gaitán, Bogotá <span className="mx-1 text-gold">·</span> Cerca de Unilago</div><div className="hero-dots" role="group" aria-label="Elegir banner del inicio">{heroSlides.map((item, i) => <button key={item.photo.url} type="button" className={`hero-dot${i === active ? " is-active" : ""}`} aria-label={`Ver banner ${i + 1} de ${heroSlides.length}`} aria-pressed={i === active} onClick={() => setActive(i)} />)}</div></div><HeroHighlights /></div></section>;
 }
 function MapPinSmall() { return <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="3" /></svg>; }
 
