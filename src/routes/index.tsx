@@ -4,7 +4,7 @@ import { ArrowRight, ArrowUpRight, CalendarDays, Check, Clock3, Flower2, Heart, 
 import { Button } from "@/components/ui/button";
 import { PrivacyNotice, SecureContactSection } from "@/components/secure-contact-section";
 import { whatsappUrl } from "@/lib/contact";
-import heroAsset from "@/assets/hero-consulta-3.jpg.asset.json";
+import heroAsset from "@/assets/hero-vital-care.jpg.asset.json";
 import heroSlide2Asset from "@/assets/hero-consulta-2.jpg.asset.json";
 import heroSlide3Asset from "@/assets/hero-consulta-4.jpg.asset.json";
 import logoAsset from "@/assets/logo.png.asset.json";
@@ -92,7 +92,7 @@ function HeroHighlights() {
 const heroSlides = [
   {
     photo: heroAsset,
-    alt: "Médico escuchando con atención a un paciente durante una consulta",
+    alt: "Profesional de la salud de Vital Care atendiendo frente a su computador, con el logo de la clínica en la pantalla",
     eyebrow: "Medicina humana en Bogotá",
     titleA: "Tu salud merece",
     titleB: "tiempo.",
