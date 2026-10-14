@@ -36,7 +36,7 @@ function requestBody(input: AppointmentRequest) {
 }
 export function createContactMail(data: AppointmentRequest) {
   const body = requestBody(data);
-  return `mailto:vitalcare@gmail.com?subject=${encodeURIComponent("Solicitud de cita — Vital Care")}&body=${encodeURIComponent(body)}`;
+  return `mailto:vitalcareconsultoriosmedicos@gmail.com?subject=${encodeURIComponent("Solicitud de cita — Vital Care")}&body=${encodeURIComponent(body)}`;
 }
 export function createAppointmentWhatsApp(data: AppointmentRequest) {
   return `https://wa.me/573138501503?text=${encodeURIComponent(requestBody(data))}`;
