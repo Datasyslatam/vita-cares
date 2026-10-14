@@ -208,17 +208,17 @@ html { scroll-behavior: smooth; scroll-padding-top: 115px; }
 .facility-caption { position: absolute; inset-inline: 0; bottom: 0; padding: 34px 16px 12px; font-size: 12px; font-weight: 700; color: var(--primary-foreground); background: linear-gradient(to top, var(--facility-veil), transparent); }
 .team-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 58px; align-items: center; }
 .team-photo-frame { position: relative; }
-.team-photo-frame::after { content: ""; position: absolute; inset: 20px -20px -20px 20px; border: 1px solid var(--gold); border-radius: var(--radius-xl); }
+.team-photo-frame::after { content: ""; position: absolute; inset: -16px; border: 1px solid var(--gold); border-radius: var(--radius-2xl); }
 .team-photo { position: relative; width: 100%; aspect-ratio: 3 / 2; object-fit: cover; display: block; border-radius: var(--radius-xl); box-shadow: var(--shadow-soft); background: var(--muted); }
 .team-heading { font-size: 31px; line-height: 1.34; font-weight: 750; text-transform: uppercase; letter-spacing: .3px; }
 .team-copy { font-size: 15px; line-height: 1.95; color: color-mix(in oklab, var(--foreground) 82%, var(--background)); max-width: 468px; }
 @media (max-width: 900px) {
   .team-grid { grid-template-columns: 1fr; gap: 36px; }
-  .team-photo-frame::after { inset: 14px -14px -14px 14px; }
+  .team-photo-frame::after { inset: -12px; }
   .team-heading { font-size: 25px; }
 }
 @media (max-width: 640px) {
-  .team-photo-frame::after { inset: 8px -8px -8px 8px; }
+  .team-photo-frame::after { inset: -8px; }
   .team-heading { font-size: 23px; }
   .team-copy { font-size: 14px; line-height: 1.85; max-width: none; }
 }
