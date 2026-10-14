@@ -14,7 +14,7 @@ import fotoConsultorio from "@/assets/instalaciones-consultorio.jpg.asset.json";
 import fotoValoracion from "@/assets/instalaciones-valoracion.jpg.asset.json";
 import fotoEspera from "@/assets/instalaciones-espera.jpg.asset.json";
 import fotoRecepcion2 from "@/assets/instalaciones-recepcion-2.jpg.asset.json";
-import fotoEquipo from "@/assets/equipo-doctores.jpg.asset.json";
+import fotoEquipo from "@/assets/equipo-doctores-2.jpg.asset.json";
 
 const medicalBusinessJsonLd = {
   "@context": "https://schema.org",
