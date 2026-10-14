@@ -10,7 +10,7 @@ describe("Secure contact", () => {
   });
   it("encodes fields into the mail body rather than adding headers", () => {
     const href = createContactMail({ ...valid, name: "Ana & Juan?" });
-    expect(href).toMatch(/^mailto:vitalcare@gmail.com\?subject=/);
+    expect(href).toMatch(/^mailto:vitalcareconsultoriosmedicos@gmail.com\?subject=/);
     expect(href).toContain("Ana%20%26%20Juan%3F");
     expect(href).not.toContain("&cc=");
   });

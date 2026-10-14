@@ -24,7 +24,7 @@ const medicalBusinessJsonLd = {
   description: "Consultorio médico en Bogotá. Consultas de 40 minutos, medicina humana y atención personalizada.",
   url: "https://happy-patient-reach.lovable.app/",
   telephone: "+57 313 850 1503",
-  email: "vitalcare@gmail.com",
+  email: "vitalcareconsultoriosmedicos@gmail.com",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Bogotá",
