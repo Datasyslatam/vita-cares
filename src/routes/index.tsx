@@ -168,6 +168,7 @@ function Facilities() {
   return <section id="instalaciones" className="bg-secondary py-16 md:py-20"><div className="page-width"><div className="flex flex-col items-center text-center"><div className="eyebrow justify-center">Nuestras instalaciones</div><h2 className="section-heading mt-4">Un espacio creado para<br />que te sientas en confianza.</h2><p className="section-copy mt-4 max-w-xl">Creemos que el ambiente también cuida. Nuestras instalaciones están pensadas para que, desde el momento en que llegas, te reciban la calidez, la tranquilidad y la privacidad que tu visita merece.</p></div><div className="facilities-grid mt-11">{facilitiesPhotos.map(photo => <figure className={`facility-card ${photo.span}`} key={photo.caption}><img src={photo.src.url} alt={photo.alt} className="facility-photo" loading="lazy" /><figcaption className="facility-caption">{photo.caption}</figcaption></figure>)}</div></div></section>;
 }
 
+// Preguntas frecuentes: se muestran como lista desplegable encima del formulario de cita.
 const faqs = [
   { q: "¿Cómo puedo agendar una cita médica?", a: "Puedes agendar tu cita a través de nuestra página web o contactarnos por WhatsApp para consultar la disponibilidad de horarios." },
   { q: "¿Cuánto cuesta una consulta médica?", a: "El precio depende del tipo de atención. Puedes consultar nuestras tarifas actualizadas en la sección de servicios de la página web o directamente con nuestro número de WhatsApp." },
