@@ -148,6 +148,11 @@
 :root {
   --gold: oklch(0.62 0.09 79);
   --gold-soft: oklch(0.94 0.026 83);
+  --gold-bright: oklch(0.80 0.14 86);
+  --gold-bright-deep: oklch(0.67 0.13 76);
+  --gold-edge: oklch(0.88 0.09 90);
+  --gold-glow: oklch(0.78 0.15 85 / 42%);
+  --gold-glow-soft: oklch(0.78 0.15 85 / 18%);
   --sage: oklch(0.47 0.082 153);
   --sage-soft: oklch(0.96 0.018 153);
   --footer: oklch(0.29 0.036 246);
@@ -258,4 +263,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 115px; }
   .hero-badge:nth-child(2n) { border-left: 0; }
   .hero-badge:nth-child(n+2) { border-top: 1px solid var(--border); }
 }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .reveal { animation: none; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .reveal { animation: none; } .btn-whatsapp-gold { animation: none; box-shadow: 0 6px 18px var(--gold-glow-soft); } }
+.btn-whatsapp-gold { background: linear-gradient(135deg, var(--gold-bright) 0%, var(--gold-bright-deep) 52%, var(--gold-bright) 100%); color: var(--footer); border: 1px solid var(--gold-edge); box-shadow: 0 4px 14px var(--gold-glow-soft); animation: gold-breathe 2.8s ease-in-out infinite; }
+.btn-whatsapp-gold:hover, .btn-whatsapp-gold:focus-visible { animation-play-state: paused; filter: brightness(1.07); box-shadow: 0 8px 26px var(--gold-glow); }
+@keyframes gold-breathe { 0%, 100% { box-shadow: 0 4px 14px var(--gold-glow-soft); filter: brightness(1); } 50% { box-shadow: 0 9px 28px var(--gold-glow); filter: brightness(1.14); } }

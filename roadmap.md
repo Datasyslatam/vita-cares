@@ -10,3 +10,5 @@
 - [x] Add the two-column "Nuestro equipo" section above "Nuestro modelo de atención".
 - [x] Replace the team photo with the combined doctors portrait, fitted to the column width.
 - [x] Swap the team photo for the re-cropped version, fitted to the column width.
+- [x] Replace the first hero banner image with the new Vital Care workstation photo.
+- [x] Restyle every WhatsApp button as bright gold with a soft pulsing glow.

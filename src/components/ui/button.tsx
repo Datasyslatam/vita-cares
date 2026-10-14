@@ -10,7 +10,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         care: "bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg shadow-sm",
-        whatsapp: "bg-background/80 text-sage border border-sage/30 hover:bg-sage-soft rounded-lg",
+        whatsapp: "btn-whatsapp-gold rounded-lg",
         gold: "bg-gold text-primary-foreground hover:bg-gold/90 rounded-lg",
         default: "bg-primary text-primary-foreground shadow hover:bg-primary/90",
         destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",

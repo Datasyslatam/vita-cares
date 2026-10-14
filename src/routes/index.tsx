@@ -4,7 +4,7 @@ import { ArrowRight, ArrowUpRight, CalendarDays, Check, Clock3, Flower2, Heart, 
 import { Button } from "@/components/ui/button";
 import { PrivacyNotice, SecureContactSection } from "@/components/secure-contact-section";
 import { whatsappUrl } from "@/lib/contact";
-import heroAsset from "@/assets/hero-consulta-3.jpg.asset.json";
+import heroAsset from "@/assets/hero-vital-care.jpg.asset.json";
 import heroSlide2Asset from "@/assets/hero-consulta-2.jpg.asset.json";
 import heroSlide3Asset from "@/assets/hero-consulta-4.jpg.asset.json";
 import logoAsset from "@/assets/logo.png.asset.json";
@@ -92,7 +92,7 @@ function HeroHighlights() {
 const heroSlides = [
   {
     photo: heroAsset,
-    alt: "Médico escuchando con atención a un paciente durante una consulta",
+    alt: "Profesional de la salud de Vital Care atendiendo frente a su computador, con el logo de la clínica en la pantalla",
     eyebrow: "Medicina humana en Bogotá",
     titleA: "Tu salud merece",
     titleB: "tiempo.",
@@ -179,5 +179,5 @@ function CareModel() {
 function Footer() { return <footer className="bg-footer py-10 text-primary-foreground"><div className="page-width"><div className="flex flex-col justify-between gap-8 md:flex-row"><div className="flex items-center gap-5"><img src={logoAsset.url} alt="Vital Care" width="110" height="100" className="h-[95px] w-[110px] object-contain" loading="lazy" /><div><p className="text-base font-semibold">Tu salud merece tiempo.</p><p className="mt-2 text-xs leading-6 text-footer-muted">Medicina humana. Cuidado cercano.<br />El Lago – Gaitán, Bogotá.</p></div></div><nav aria-label="Enlaces del pie de página" className="flex flex-wrap items-center gap-6 text-xs text-footer-muted"><a href="#nosotros">Vital Care</a><a href="#servicios">Servicios</a><a href="#contacto">Contacto</a><PrivacyNotice>Privacidad</PrivacyNotice></nav></div><div className="mt-7 flex flex-col justify-between gap-3 border-t border-footer-muted/20 pt-6 text-[11px] text-footer-muted sm:flex-row"><p>© {new Date().getFullYear()} Vital Care. Todos los derechos reservados.</p><p>Este sitio no sustituye una valoración médica. En una emergencia, llama al 123.</p></div></div></footer>; }
 
 function Index() {
-  return <><Navigation /><main><Hero /><WhyCare /><Services /><Team /><CareModel /><section className="bg-primary py-9 text-primary-foreground"><div className="page-width flex flex-col items-start justify-between gap-5 md:flex-row md:items-center"><div className="flex items-center gap-5"><Heart className="hidden size-9 shrink-0 text-gold-soft sm:block" strokeWidth={1.3} /><div><h2 className="text-xl font-semibold">No tienes que cuidar de tu salud a solas.</h2><p className="mt-2 text-sm text-primary-foreground/80">Estamos aquí para escucharte y acompañarte.</p></div></div><Button variant="gold" size="care" asChild><a href="#contacto">Demos el primer paso <ArrowUpRight /></a></Button></div></section><Facilities /><SecureContactSection /></main><Footer /><Button variant="care" size="icon" asChild className="fixed bottom-6 right-6 z-20 size-12 rounded-full shadow-lg"><a href={whatsappUrl} target="_blank" rel="noreferrer" aria-label="Contactar Vital Care por WhatsApp" title="Escribir por WhatsApp"><MessageCircle className="size-6" /></a></Button></>;
+  return <><Navigation /><main><Hero /><WhyCare /><Services /><Team /><CareModel /><section className="bg-primary py-9 text-primary-foreground"><div className="page-width flex flex-col items-start justify-between gap-5 md:flex-row md:items-center"><div className="flex items-center gap-5"><Heart className="hidden size-9 shrink-0 text-gold-soft sm:block" strokeWidth={1.3} /><div><h2 className="text-xl font-semibold">No tienes que cuidar de tu salud a solas.</h2><p className="mt-2 text-sm text-primary-foreground/80">Estamos aquí para escucharte y acompañarte.</p></div></div><Button variant="gold" size="care" asChild><a href="#contacto">Demos el primer paso <ArrowUpRight /></a></Button></div></section><Facilities /><SecureContactSection /></main><Footer /><Button variant="whatsapp" size="icon" asChild className="fixed bottom-6 right-6 z-20 size-12 rounded-full"><a href={whatsappUrl} target="_blank" rel="noreferrer" aria-label="Contactar Vital Care por WhatsApp" title="Escribir por WhatsApp"><MessageCircle className="size-6" /></a></Button></>;
 }
