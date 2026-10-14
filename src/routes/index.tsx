@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { ArrowRight, ArrowUpRight, CalendarDays, Check, Clock3, Flower2, Heart, HeartPulse, Menu, MessageCircle, Sprout, Stethoscope, Users, X } from "lucide-react";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { PrivacyNotice, SecureContactSection } from "@/components/secure-contact-section";
 import { whatsappUrl } from "@/lib/contact";
@@ -165,6 +166,18 @@ const facilitiesPhotos = [
 
 function Facilities() {
   return <section id="instalaciones" className="bg-secondary py-16 md:py-20"><div className="page-width"><div className="flex flex-col items-center text-center"><div className="eyebrow justify-center">Nuestras instalaciones</div><h2 className="section-heading mt-4">Un espacio creado para<br />que te sientas en confianza.</h2><p className="section-copy mt-4 max-w-xl">Creemos que el ambiente también cuida. Nuestras instalaciones están pensadas para que, desde el momento en que llegas, te reciban la calidez, la tranquilidad y la privacidad que tu visita merece.</p></div><div className="facilities-grid mt-11">{facilitiesPhotos.map(photo => <figure className={`facility-card ${photo.span}`} key={photo.caption}><img src={photo.src.url} alt={photo.alt} className="facility-photo" loading="lazy" /><figcaption className="facility-caption">{photo.caption}</figcaption></figure>)}</div></div></section>;
+}
+
+const faqs = [
+  { q: "¿Cómo puedo agendar una cita médica?", a: "Puedes agendar tu cita a través de nuestra página web o contactarnos por WhatsApp para consultar la disponibilidad de horarios." },
+  { q: "¿Cuánto cuesta una consulta médica?", a: "El precio depende del tipo de atención. Puedes consultar nuestras tarifas actualizadas en la sección de servicios de la página web o directamente con nuestro número de WhatsApp." },
+  { q: "¿Qué servicios médicos ofrece Vital Care?", a: "Ofrecemos consultas médicas integrales, atención preventiva y seguimiento de condiciones de salud, según los servicios disponibles en el consultorio." },
+  { q: "¿Qué debo llevar a mi cita?", a: "Te recomendamos llevar tu documento de identidad, los resultados de exámenes recientes y una lista de los medicamentos que utilizas." },
+  { q: "¿Puedo cancelar o reprogramar mi cita?", a: "Sí. Comunícate con nosotros con la mayor anticipación posible para consultar las opciones de reprogramación." },
+];
+
+function FAQ() {
+  return <section id="faq" className="py-16 md:py-20"><div className="page-width"><div className="flex flex-col items-center text-center"><div className="eyebrow justify-center">Preguntas frecuentes</div><h2 className="section-heading mt-4">Resolvemos tus dudas<br />antes de tu visita.</h2><p className="section-copy mt-4 max-w-xl">Antes de agendar es normal tener preguntas. Aquí reunimos las que más nos hacen, con respuestas claras y sin rodeos. Si la tuya no aparece, escríbenos por WhatsApp y con gusto te ayudamos.</p></div><Accordion type="single" collapsible defaultValue="faq-0" className="faq-list mt-11">{faqs.map((item, i) => <AccordionItem className="faq-item" value={`faq-${i}`} key={item.q}><AccordionTrigger className="faq-trigger">{item.q}</AccordionTrigger><AccordionContent className="faq-answer">{item.a}</AccordionContent></AccordionItem>)}</Accordion></div></section>;
 }
 
 function Team() {
