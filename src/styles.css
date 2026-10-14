@@ -267,3 +267,13 @@ html { scroll-behavior: smooth; scroll-padding-top: 115px; }
 .btn-whatsapp-gold { background: linear-gradient(135deg, var(--gold-bright) 0%, var(--gold-bright-deep) 52%, var(--gold-bright) 100%); color: var(--footer); border: 1px solid var(--gold-edge); box-shadow: 0 4px 14px var(--gold-glow-soft); animation: gold-breathe 2.8s ease-in-out infinite; }
 .btn-whatsapp-gold:hover, .btn-whatsapp-gold:focus-visible { animation-play-state: paused; filter: brightness(1.07); box-shadow: 0 8px 26px var(--gold-glow); }
 @keyframes gold-breathe { 0%, 100% { box-shadow: 0 4px 14px var(--gold-glow-soft); filter: brightness(1); } 50% { box-shadow: 0 9px 28px var(--gold-glow); filter: brightness(1.14); } }
+.faq-list { border: 1px solid var(--border); border-radius: var(--radius); background: var(--background); box-shadow: var(--shadow-soft); overflow: hidden; }
+.faq-item { border-bottom: 1px solid var(--border); }
+.faq-item:last-child { border-bottom: 0; }
+.faq-trigger { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 18px; padding: 20px 24px; border: 0; background: transparent; color: var(--foreground); font-size: 15px; font-weight: 700; text-align: left; cursor: pointer; transition: background .2s ease, color .2s ease; }
+.faq-trigger:hover { background: var(--secondary); color: var(--gold); text-decoration: none; }
+.faq-trigger[data-state="open"] { color: var(--gold); }
+.faq-trigger svg { flex: none; color: var(--gold); transition: transform .25s ease; }
+.faq-trigger[data-state="open"] svg { transform: rotate(180deg); }
+.faq-answer { padding: 0 24px 20px; max-width: 78ch; font-size: 14px; line-height: 1.8; color: var(--muted-foreground); }
+@media (max-width: 640px) { .faq-trigger { padding: 17px 16px; font-size: 14px; gap: 12px; } .faq-answer { padding: 0 16px 17px; } }
