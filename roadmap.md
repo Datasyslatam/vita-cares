@@ -9,3 +9,4 @@
 - [x] Turn the hero into a three-slide banner with gold indicators and 6-second rotation.
 - [x] Add the two-column "Nuestro equipo" section above "Nuestro modelo de atención".
 - [x] Replace the team photo with the combined doctors portrait, fitted to the column width.
+- [x] Swap the team photo for the re-cropped version, fitted to the column width.
