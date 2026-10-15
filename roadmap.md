@@ -15,3 +15,4 @@
 - [x] Add the "Nuestra Ubicación" section with the embedded Google Maps map below the appointment form.
 - [x] Correct the contact email to vitalcareconsultoriosmedicos@gmail.com everywhere.
 - [x] Rebuild the team section as three columns: doctor photo, centered text, doctora photo.
+- [x] Show the team heading in sentence case instead of all-uppercase.
