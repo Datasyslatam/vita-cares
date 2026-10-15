@@ -165,6 +165,7 @@
 @theme inline {
   --color-gold: var(--gold);
   --color-gold-soft: var(--gold-soft);
+  --color-gold-bright: var(--gold-bright);
   --color-beige: var(--beige);
   --color-sage: var(--sage);
   --color-sage-soft: var(--sage-soft);
