@@ -17,3 +17,4 @@
 - [x] Rebuild the team section as three columns: doctor photo, centered text, doctora photo.
 - [x] Show the team heading in sentence case instead of all-uppercase.
 - [x] Show the postal address Cra, 16 # 79-20 Oficina 716 in the hero banner and footer.
+- [x] Enlarge and bold the hero address line; make the navbar appointment button gold with beige hover.

@@ -155,6 +155,7 @@
   --gold-glow-soft: oklch(0.78 0.15 85 / 18%);
   --sage: oklch(0.47 0.082 153);
   --sage-soft: oklch(0.96 0.018 153);
+  --beige: oklch(0.92 0.03 82);
   --footer: oklch(0.29 0.036 246);
   --footer-muted: oklch(0.79 0.019 247);
   --facility-veil: oklch(0.32 0.035 247 / 62%);
@@ -164,6 +165,8 @@
 @theme inline {
   --color-gold: var(--gold);
   --color-gold-soft: var(--gold-soft);
+  --color-gold-bright: var(--gold-bright);
+  --color-beige: var(--beige);
   --color-sage: var(--sage);
   --color-sage-soft: var(--sage-soft);
   --color-footer: var(--footer);
