@@ -16,3 +16,4 @@
 - [x] Correct the contact email to vitalcareconsultoriosmedicos@gmail.com everywhere.
 - [x] Rebuild the team section as three columns: doctor photo, centered text, doctora photo.
 - [x] Show the team heading in sentence case instead of all-uppercase.
+- [x] Show the postal address Cra, 16 # 79-20 Oficina 716 in the hero banner and footer.
