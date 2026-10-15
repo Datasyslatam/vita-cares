@@ -15,7 +15,8 @@ import fotoConsultorio from "@/assets/instalaciones-consultorio.jpg.asset.json";
 import fotoValoracion from "@/assets/instalaciones-valoracion.jpg.asset.json";
 import fotoEspera from "@/assets/instalaciones-espera.jpg.asset.json";
 import fotoRecepcion2 from "@/assets/instalaciones-recepcion-2.jpg.asset.json";
-import fotoEquipo from "@/assets/equipo-doctores-2.jpg.asset.json";
+import fotoDoctor from "@/assets/equipo-doctor.jpg.asset.json";
+import fotoDoctora from "@/assets/equipo-doctora.jpg.asset.json";
 
 const medicalBusinessJsonLd = {
   "@context": "https://schema.org",
@@ -182,7 +183,7 @@ function FAQ() {
 }
 
 function Team() {
-  return <section id="equipo" className="py-16 md:py-20"><div className="page-width team-grid"><div className="team-photo-frame"><img src={fotoEquipo.url} alt="Dos profesionales de Vital Care con uniformes médicos naranjas y estetoscopios, sentados tras sus escritorios en el consultorio" className="team-photo" loading="lazy" /></div><div><div className="eyebrow">Nuestro equipo</div><h2 className="team-heading mt-4">Profesionales que te cuidan, personas que te escuchan.</h2><p className="team-copy mt-5">En Vital Care creemos que una buena atención médica comienza escuchándote. Nuestro equipo de profesionales está comprometido con brindarte una atención cercana, humana y personalizada, en un espacio donde puedas expresar tus inquietudes, resolver tus dudas y sentirte acompañado en el cuidado de tu salud.</p></div></div></section>;
+  return <section id="equipo" className="py-16 md:py-20"><div className="page-width team-grid"><div className="team-photo-frame"><img src={fotoDoctor.url} alt="Profesional de la salud de Vital Care con uniforme médico naranja, estetoscopio y lentes, sentado tras su escritorio en el consultorio" className="team-photo" loading="lazy" /></div><div className="team-copy-col"><div className="eyebrow">Nuestro equipo</div><h2 className="team-heading mt-4">Profesionales que te cuidan, personas que te escuchan.</h2><p className="team-copy mt-5">En Vital Care creemos que una buena atención médica comienza escuchándote. Nuestro equipo de profesionales está comprometido con brindarte una atención cercana, humana y personalizada, en un espacio donde puedas expresar tus inquietudes, resolver tus dudas y sentirte acompañado en el cuidado de tu salud.</p></div><div className="team-photo-frame"><img src={fotoDoctora.url} alt="Profesional de la salud de Vital Care con uniforme médico naranja y estetoscopio, sentada tras su escritorio en el consultorio" className="team-photo" loading="lazy" /></div></div></section>;
 }
 
 function CareModel() {
