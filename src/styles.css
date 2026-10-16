@@ -215,11 +215,13 @@ html { scroll-behavior: smooth; scroll-padding-top: 115px; }
 .facility-card:hover .facility-photo { transform: scale(1.045); }
 .facility-caption { position: absolute; inset-inline: 0; bottom: 0; padding: 34px 16px 12px; font-size: 12px; font-weight: 700; color: var(--primary-foreground); background: linear-gradient(to top, var(--facility-veil), transparent); }
 .team-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) minmax(0, 1fr); gap: 46px; align-items: center; }
+.team-copy-col { text-align: center; }
+.team-copy-col .eyebrow { justify-content: center; }
 .team-photo-frame { position: relative; }
 .team-photo-frame::after { content: ""; position: absolute; inset: -16px; border: 1px solid var(--gold); border-radius: var(--radius-2xl); }
 .team-photo { position: relative; width: 100%; aspect-ratio: 751 / 1183; object-fit: cover; object-position: center top; display: block; border-radius: var(--radius-xl); box-shadow: var(--shadow-soft); background: var(--muted); }
 .team-heading { font-size: 31px; line-height: 1.34; font-weight: 750; letter-spacing: .3px; }
-.team-copy { font-size: 15px; line-height: 1.95; color: color-mix(in oklab, var(--foreground) 82%, var(--background)); max-width: 468px; }
+.team-copy { font-size: 15px; line-height: 1.95; color: color-mix(in oklab, var(--foreground) 82%, var(--background)); max-width: 468px; margin-inline: auto; }
 @media (max-width: 1000px) {
   .team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px 22px; }
   .team-copy-col { grid-column: 1 / -1; grid-row: 1; }
