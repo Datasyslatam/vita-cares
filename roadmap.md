@@ -24,3 +24,4 @@
 
 - [x] Formulario de cita envía por correo vía Web3Forms (api.web3forms.com/submit) a vitalcareconsultoriosmedicos@gmail.com; WhatsApp se mantiene como alternativa.
 - [x] Ocultar el sello "Edit with Lovable" en el dominio publicado y en la URL de Lovable.
+- [x] Agrandar el botón flotante de WhatsApp y pintar su burbuja en verde WhatsApp.

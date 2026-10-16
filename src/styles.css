@@ -153,6 +153,9 @@
   --gold-edge: oklch(0.88 0.09 90);
   --gold-glow: oklch(0.78 0.15 85 / 42%);
   --gold-glow-soft: oklch(0.78 0.15 85 / 18%);
+  --whatsapp: oklch(0.563 0.141 152.5);
+  --whatsapp-bright: oklch(0.761 0.201 149.7);
+  --whatsapp-halo: oklch(0.99 0.007 231);
   --sage: oklch(0.47 0.082 153);
   --sage-soft: oklch(0.96 0.018 153);
   --beige: oklch(0.92 0.03 82);
@@ -167,6 +170,9 @@
   --color-gold-soft: var(--gold-soft);
   --color-gold-bright: var(--gold-bright);
   --color-beige: var(--beige);
+  --color-whatsapp: var(--whatsapp);
+  --color-whatsapp-bright: var(--whatsapp-bright);
+  --color-whatsapp-halo: var(--whatsapp-halo);
   --color-sage: var(--sage);
   --color-sage-soft: var(--sage-soft);
   --color-footer: var(--footer);
@@ -277,6 +283,9 @@ html { scroll-behavior: smooth; scroll-padding-top: 115px; }
 .btn-whatsapp-gold { background: linear-gradient(135deg, var(--gold-bright) 0%, var(--gold-bright-deep) 52%, var(--gold-bright) 100%); color: var(--footer); border: 1px solid var(--gold-edge); box-shadow: 0 4px 14px var(--gold-glow-soft); animation: gold-breathe 2.8s ease-in-out infinite; }
 .btn-whatsapp-gold:hover, .btn-whatsapp-gold:focus-visible { animation-play-state: paused; filter: brightness(1.07); box-shadow: 0 8px 26px var(--gold-glow); }
 @keyframes gold-breathe { 0%, 100% { box-shadow: 0 4px 14px var(--gold-glow-soft); filter: brightness(1); } 50% { box-shadow: 0 9px 28px var(--gold-glow); filter: brightness(1.14); } }
+.float-wa { width: 58px; height: 58px; }
+.float-wa svg { width: 32px; height: 32px; }
+@media (max-width: 640px) { .float-wa { width: 53px; height: 53px; } .float-wa svg { width: 29px; height: 29px; } }
 .faq-list { border: 1px solid var(--border); border-radius: var(--radius); background: var(--background); box-shadow: var(--shadow-soft); overflow: hidden; }
 .map-frame { position: relative; overflow: hidden; padding: 8px; border: 2px solid var(--gold); border-radius: var(--radius-xl); background: linear-gradient(140deg, var(--gold-soft) 0%, var(--secondary) 46%, var(--gold-soft) 100%); box-shadow: var(--shadow-soft); }
 .map-frame::after { content: ""; position: absolute; inset: 3px; border-radius: calc(var(--radius-xl) - 4px); border: 1px solid var(--gold-edge); pointer-events: none; }
