@@ -21,3 +21,5 @@
 - [x] Correct the map marker with the new embed code and surround it with a gold frame.
 - [x] Center the text in the Nuestro Equipo section.
 - [x] Replace the navbar logo with the new gold lockup, cropped tight and legible on the light header.
+
+- [x] Formulario de cita envía por correo vía Web3Forms (api.web3forms.com/submit) a vitalcareconsultoriosmedicos@gmail.com; WhatsApp se mantiene como alternativa.
