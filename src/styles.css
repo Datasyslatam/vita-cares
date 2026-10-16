@@ -268,14 +268,15 @@ html { scroll-behavior: smooth; scroll-padding-top: 115px; }
 }
 @media (max-width: 640px) {
   .page-width { width: calc(100% - 36px); }
-  .hero { min-height: 690px; padding-bottom: 250px; }
-  .hero-photo { height: 230px; top: auto; object-position: right; }
-  .hero-copy { width: 100%; padding-block: 30px 20px; }
+  .hero { display: grid; min-height: 0; padding-bottom: 0; }
+  .hero > .page-width { display: contents; }
+  .hero-photo { position: relative; inset: auto; width: 100%; height: 230px; grid-column: 1; grid-row: 2; object-position: right; }
+  .hero-copy { width: 100%; padding-block: 30px 24px; grid-column: 1; grid-row: 1; }
   .hero h1 { font-size: 39px; margin-block: 18px; }
   .section-heading { font-size: 29px; }
   .steps::before { display: none; }
   .care-card { padding: 23px; }
-  .hero-badges { grid-template-columns: 1fr; }
+  .hero-badges { position: static; grid-column: 1; grid-row: 3; margin: 18px 18px 34px; grid-template-columns: 1fr; }
   .hero-badge:nth-child(2n) { border-left: 0; }
   .hero-badge:nth-child(n+2) { border-top: 1px solid var(--border); }
 }
