@@ -20,3 +20,4 @@
 - [x] Enlarge and bold the hero address line; make the navbar appointment button gold with beige hover.
 - [x] Correct the map marker with the new embed code and surround it with a gold frame.
 - [x] Center the text in the Nuestro Equipo section.
+- [x] Replace the navbar logo with the new gold lockup, cropped tight and legible on the light header.
