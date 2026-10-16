@@ -2,7 +2,7 @@ import { useEffect, useState, type FormEvent } from "react";
 import { ArrowLeft, ArrowUpRight, CalendarDays, Clock3, Mail, MapPin, MessageCircle, Phone, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { contactSchema, createContactMail, createAppointmentWhatsApp, formatPreferredDate, todayInBogota, whatsappUrl, type AppointmentRequest } from "@/lib/contact";
+import { contactSchema, createAppointmentWhatsApp, formatPreferredDate, sendAppointmentEmail, todayInBogota, whatsappUrl, type AppointmentRequest } from "@/lib/contact";
 
 export function PrivacyNotice({ children }: { children?: React.ReactNode }) {
   return <Dialog><DialogTrigger asChild><Button variant="link" className="h-auto p-0 text-xs">{children || "Privacidad y tratamiento de datos"}</Button></DialogTrigger><DialogContent><DialogHeader><DialogTitle>Privacidad de tu solicitud</DialogTitle></DialogHeader><div className="space-y-4 text-sm leading-7 text-muted-foreground"><p>El formulario prepara una solicitud para enviar a Vital Care por correo o WhatsApp. Los datos no se guardan en esta página y solo se envían cuando confirmas el envío en la aplicación elegida.</p><p>Tu nombre, teléfono, correo, servicio y fecha preferida se utilizarán para coordinar tu cita. No incluyas diagnósticos, historia clínica ni otros datos sensibles.</p><p>WhatsApp y tu proveedor de correo tienen sus propias condiciones de privacidad. Para consultar sobre tus datos o retirar tu autorización, escribe a vitalcareconsultoriosmedicos@gmail.com.</p></div></DialogContent></Dialog>;
@@ -11,12 +11,15 @@ export function PrivacyNotice({ children }: { children?: React.ReactNode }) {
 export function SecureContactSection() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [prepared, setPrepared] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState("");
   const [request, setRequest] = useState<AppointmentRequest | null>(null);
   const [minimumDate, setMinimumDate] = useState("");
   useEffect(() => { setMinimumDate(todayInBogota()); }, []);
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setPrepared(false);
+    setSendError("");
     const form = new FormData(event.currentTarget);
     const result = contactSchema.safeParse({ name: form.get("name"), phone: form.get("phone"), email: form.get("email"), service: form.get("service"), preferredDate: form.get("preferredDate"), consent: form.get("consent") === "on", website: form.get("website") });
     if (!result.success) {
@@ -26,23 +29,33 @@ export function SecureContactSection() {
     setErrors({});
     setRequest(result.data);
   }
-  function send(channel: "mail" | "whatsapp") {
+  async function send(channel: "mail" | "whatsapp") {
     const result = contactSchema.safeParse(request);
     if (!result.success) {
       setErrors(Object.fromEntries(result.error.issues.map(issue => [String(issue.path[0]), issue.message])));
       setRequest(null);
       return;
     }
-    if (channel === "mail") window.location.href = createContactMail(result.data);
-    else {
-      // Programmatic anchor click: window.open with noopener triggers a COOP
-      // block (NS_ERROR_DOM_COOP_FAILED) in strict browsers like LibreWolf.
-      const anchor = document.createElement("a");
-      anchor.href = createAppointmentWhatsApp(result.data);
-      anchor.target = "_blank";
-      anchor.rel = "noreferrer";
-      anchor.click();
+    if (channel === "mail") {
+      setSending(true);
+      setSendError("");
+      try {
+        await sendAppointmentEmail(result.data);
+        setPrepared(true);
+      } catch {
+        setSendError("No pudimos enviar tu solicitud por correo. Inténtalo de nuevo o envíala por WhatsApp.");
+      } finally {
+        setSending(false);
+      }
+      return;
     }
+    // Programmatic anchor click: window.open with noopener triggers a COOP
+    // block (NS_ERROR_DOM_COOP_FAILED) in strict browsers like LibreWolf.
+    const anchor = document.createElement("a");
+    anchor.href = createAppointmentWhatsApp(result.data);
+    anchor.target = "_blank";
+    anchor.rel = "noreferrer";
+    anchor.click();
     setPrepared(true);
   }
   return <section id="contacto" className="py-20 md:py-24"><div className="page-width grid gap-12 lg:grid-cols-[1fr_1.05fr] lg:gap-24">
@@ -66,7 +79,7 @@ export function SecureContactSection() {
         <Button type="submit" variant="care" size="care" className="w-full">Revisar mi solicitud <ArrowUpRight /></Button>
         <p className="text-center text-[11px] leading-5 text-muted-foreground">No incluyas información clínica o datos sensibles.</p>
       </form>
-      {request && <div className="mt-7 space-y-5"><h4 className="flex items-center gap-2 text-lg font-bold"><CalendarDays className="size-5 text-gold" /> Revisa tu solicitud</h4><dl className="space-y-4 text-sm">{[{ label: "Servicio", value: request.service }, { label: "Fecha preferida", value: formatPreferredDate(request.preferredDate) }, { label: "Nombre", value: request.name }, { label: "Teléfono", value: request.phone }, { label: "Correo", value: request.email }].map(item => <div key={item.label}><dt className="text-xs text-muted-foreground">{item.label}</dt><dd className="mt-1 break-words font-semibold">{item.value}</dd></div>)}</dl><p className="rounded-lg bg-accent p-3 text-xs leading-5 text-foreground">Esta es una solicitud, no una reserva confirmada. Vital Care te contactará para acordar la fecha y la hora.</p><Button variant="whatsapp" size="care" className="w-full" onClick={() => send("whatsapp")}><MessageCircle /> Enviar por WhatsApp <ArrowUpRight /></Button><Button variant="care" size="care" className="w-full" onClick={() => send("mail")}><Mail /> Enviar por correo <ArrowUpRight /></Button><p className="text-center text-[11px] leading-5 text-muted-foreground">Confirma el envío en la aplicación elegida.</p><Button variant="ghost" onClick={() => { setRequest(null); setPrepared(false); }}><ArrowLeft /> Modificar datos</Button>{prepared && <p role="status" className="rounded-lg bg-sage-soft p-3 text-xs leading-5 text-sage">Solicitud preparada. Confirma el envío en tu correo o WhatsApp. Tu cita todavía está pendiente de confirmación.</p>}</div>}
+      {request && <div className="mt-7 space-y-5"><h4 className="flex items-center gap-2 text-lg font-bold"><CalendarDays className="size-5 text-gold" /> Revisa tu solicitud</h4><dl className="space-y-4 text-sm">{[{ label: "Servicio", value: request.service }, { label: "Fecha preferida", value: formatPreferredDate(request.preferredDate) }, { label: "Nombre", value: request.name }, { label: "Teléfono", value: request.phone }, { label: "Correo", value: request.email }].map(item => <div key={item.label}><dt className="text-xs text-muted-foreground">{item.label}</dt><dd className="mt-1 break-words font-semibold">{item.value}</dd></div>)}</dl><p className="rounded-lg bg-accent p-3 text-xs leading-5 text-foreground">Esta es una solicitud, no una reserva confirmada. Vital Care te contactará para acordar la fecha y la hora.</p><Button variant="whatsapp" size="care" className="w-full" onClick={() => send("whatsapp")}><MessageCircle /> Enviar por WhatsApp <ArrowUpRight /></Button><Button variant="care" size="care" className="w-full" disabled={sending} onClick={() => send("mail")}><Mail /> {sending ? "Enviando…" : "Enviar por correo"} <ArrowUpRight /></Button><p className="text-center text-[11px] leading-5 text-muted-foreground">Por correo llega directo a Vital Care; por WhatsApp confirmas el envío en la aplicación.</p><Button variant="ghost" onClick={() => { setRequest(null); setPrepared(false); setSendError(""); }}><ArrowLeft /> Modificar datos</Button>{sendError && <p role="alert" className="form-error">{sendError}</p>}{prepared && <p role="status" className="rounded-lg bg-sage-soft p-3 text-xs leading-5 text-sage">Solicitud enviada. Vital Care te contactará para confirmar la fecha y la hora de tu cita.</p>}</div>}
       <div className="mt-5 flex items-center justify-center gap-2 border-t border-border pt-4 text-[11px] text-muted-foreground"><ShieldCheck size={14} /> Tu privacidad también es parte de nuestro cuidado.</div>
     </div>
   </div></section>;

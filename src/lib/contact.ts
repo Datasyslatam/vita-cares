@@ -41,3 +41,25 @@ export function createContactMail(data: AppointmentRequest) {
 export function createAppointmentWhatsApp(data: AppointmentRequest) {
   return `https://wa.me/573138501503?text=${encodeURIComponent(requestBody(data))}`;
 }
+
+const WEB3FORMS_ACCESS_KEY = "d12fff90-201f-4a0d-8df4-f1915393a650";
+export async function sendAppointmentEmail(input: AppointmentRequest): Promise<void> {
+  const data = contactSchema.parse(input);
+  const response = await fetch("https://api.web3forms.com/submit", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify({
+      access_key: WEB3FORMS_ACCESS_KEY,
+      subject: "Solicitud de cita — Vital Care",
+      from_name: "Sitio web Vital Care",
+      Nombre: data.name,
+      "Teléfono": data.phone,
+      Correo: data.email,
+      Servicio: data.service,
+      "Fecha preferida": formatPreferredDate(data.preferredDate),
+      message: requestBody(data),
+    }),
+  });
+  const result = (await response.json().catch(() => null)) as { success?: boolean } | null;
+  if (!response.ok || !result?.success) throw new Error("No se pudo enviar la solicitud.");
+}
