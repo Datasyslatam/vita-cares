@@ -18,4 +18,5 @@
 - [x] Show the team heading in sentence case instead of all-uppercase.
 - [x] Show the postal address Cra, 16 # 79-20 Oficina 716 in the hero banner and footer.
 - [x] Enlarge and bold the hero address line; make the navbar appointment button gold with beige hover.
-- [x] Correct the map marker with the new embed code and surround it with a gold frame.- [x] Center the text in the Nuestro Equipo section.
+- [x] Correct the map marker with the new embed code and surround it with a gold frame.
+- [x] Center the text in the Nuestro Equipo section.
