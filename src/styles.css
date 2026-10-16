@@ -276,9 +276,9 @@ html { scroll-behavior: smooth; scroll-padding-top: 115px; }
 .btn-whatsapp-gold:hover, .btn-whatsapp-gold:focus-visible { animation-play-state: paused; filter: brightness(1.07); box-shadow: 0 8px 26px var(--gold-glow); }
 @keyframes gold-breathe { 0%, 100% { box-shadow: 0 4px 14px var(--gold-glow-soft); filter: brightness(1); } 50% { box-shadow: 0 9px 28px var(--gold-glow); filter: brightness(1.14); } }
 .faq-list { border: 1px solid var(--border); border-radius: var(--radius); background: var(--background); box-shadow: var(--shadow-soft); overflow: hidden; }
-.map-frame { position: relative; overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius-xl); background: var(--muted); box-shadow: var(--shadow-soft); }
-.map-frame::after { content: ""; position: absolute; inset: 0; border-radius: inherit; border: 1px solid var(--gold-soft); pointer-events: none; }
-.map-embed { display: block; width: 100%; height: 430px; border: 0; }
+.map-frame { position: relative; overflow: hidden; padding: 8px; border: 2px solid var(--gold); border-radius: var(--radius-xl); background: linear-gradient(140deg, var(--gold-soft) 0%, var(--secondary) 46%, var(--gold-soft) 100%); box-shadow: var(--shadow-soft); }
+.map-frame::after { content: ""; position: absolute; inset: 3px; border-radius: calc(var(--radius-xl) - 4px); border: 1px solid var(--gold-edge); pointer-events: none; }
+.map-embed { display: block; width: 100%; height: 430px; border: 0; border-radius: calc(var(--radius-xl) - 9px); }
 @media (max-width: 640px) { .map-embed { height: 300px; } }
 .faq-item { border-bottom: 1px solid var(--border); }
 .faq-item:last-child { border-bottom: 0; }
